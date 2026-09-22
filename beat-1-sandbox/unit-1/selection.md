@@ -15,53 +15,64 @@ https://github.com/codepath/pathreview-ai301-fa26-s3/issues/63
 
 **Verdict output**
 
+Ranked read-out
+
 1. #63 — README scorer test fixture too short (accept)
 Tightest scope of the three: one test function in one file, with a copy-paste repro (pytest tests/unit/test_readme_scorer.py -q → assert 51 > 100). I confirmed the xfail(strict=True, reason="issue #63: …") marker is live at tests/unit/test_readme_scorer.py:18–21, and CONTRIBUTING documents exactly what to do with it — so "done" is machine-checkable rather than a judgment call.
 
-```json
-{
-  "item": "https://github.com/codepath/pathreview-ai301-fa26-s3/issues/63",
-  "checks": [
-    {
-      "name": "Maintainer activity",
-      "grade": "pass",
-      "evidence": "COLLABORATOR Aburke225 committed to main 2026-09-16, 6 days before today (2026-09-22)"
-    },
-    {
-      "name": "Project in use",
-      "grade": "pass",
-      "evidence": "archived: false; pushed_at 2026-09-16 is within 90 days (no releases exist)"
-    },
-    {
-      "name": "Bounded contribution",
-      "grade": "pass",
-      "evidence": "One concrete outcome: 'Extend the fixture (or correct the assertion)' in test_readme_with_all_quality_signals"
-    },
-    {
-      "name": "Repeated failed attempts",
-      "grade": "pass",
-      "evidence": "Opened 2026-09-10 (12 days old); repo has 0 PRs in any state"
-    },
-    {
-      "name": "Available to work on",
-      "grade": "pass",
-      "evidence": "assignees: [] explicitly empty; 0 comments; timeline has only 4 label events; no PRs exist in repo"
-    },
-    {
-      "name": "AI workflow permitted",
-      "grade": "pass",
-      "evidence": "docs/CONTRIBUTING.md, PR template and 4 issue templates inspected: no AI restriction stated"
-    },
-    {
-      "name": "Newcomer guidance",
-      "grade": "pass",
-      "evidence": "Labeled 'good first issue'; names tests/unit/test_readme_scorer.py and the exact test function"
-    }
-  ],
-  "verdict": "accept"
-}
-```
+2. #37 — POST /profiles request body schema missing (accept)
+Docs-only deliverable, no runtime risk. I verified docs/API.md:18 is the bare one-liner the issue describes. Slightly wider than its title admits — the body asks for POST /reviews too — but it's still one bounded doc change.
 
+3. #18 — repo analyzer never receives a file list (accept)
+Genuinely real: ingestion/parsers/repo_analyzer.py:114–125 reads repo_data["file_structure"], and nothing sets it. But this is the only one of the three that adds new behavior (making GitHubTool fetch a file listing) across two modules, at a 2–4h estimate — most room for scope you can't see from the issue text.
+
+All three pass Newcomer guidance (preferred): each carries good first issue and names specific files and functions, so that check doesn't separate them.
+
+If your fit profile says you want agent/tool-integration practice over test and docs work, #18 moves to the top — it's accepted either way. Worth writing that profile into scope.md before the next run.
+
+```json
+[
+  {
+    "item": "https://github.com/codepath/pathreview-ai301-fa26-s3/issues/63",
+    "checks": [
+      {"name": "Maintainer activity", "grade": "pass", "evidence": "COLLABORATOR Aburke225 committed to main 2026-09-16, 6 days before today (2026-09-22)"},
+      {"name": "Project in use", "grade": "pass", "evidence": "archived: false; pushed_at 2026-09-16 is within 90 days (no releases exist)"},
+      {"name": "Bounded contribution", "grade": "pass", "evidence": "One concrete outcome: 'Extend the fixture (or correct the assertion)' in test_readme_with_all_quality_signals"},
+      {"name": "Repeated failed attempts", "grade": "pass", "evidence": "Opened 2026-09-10 (12 days old); repo has 0 PRs in any state"},
+      {"name": "Available to work on", "grade": "pass", "evidence": "assignees: [] explicitly empty; 0 comments; timeline has only 4 label events; no PRs exist in repo"},
+      {"name": "AI workflow permitted", "grade": "pass", "evidence": "docs/CONTRIBUTING.md, PR template and 4 issue templates inspected: no AI restriction stated"},
+      {"name": "Newcomer guidance", "grade": "pass", "evidence": "Labeled 'good first issue'; names tests/unit/test_readme_scorer.py and the exact test function"}
+    ],
+    "verdict": "accept"
+  },
+  {
+    "item": "https://github.com/codepath/pathreview-ai301-fa26-s3/issues/37",
+    "checks": [
+      {"name": "Maintainer activity", "grade": "pass", "evidence": "COLLABORATOR Aburke225 committed to main 2026-09-16; also renamed/labeled issues that day"},
+      {"name": "Project in use", "grade": "pass", "evidence": "archived: false; pushed_at 2026-09-16 within 90 days"},
+      {"name": "Bounded contribution", "grade": "pass", "evidence": "'Add them for POST /profiles and POST /reviews, with a description and an example value for each field' — one doc deliverable, 2–3h"},
+      {"name": "Repeated failed attempts", "grade": "pass", "evidence": "Opened 2026-09-10 (12 days old); repo has 0 PRs in any state"},
+      {"name": "Available to work on", "grade": "pass", "evidence": "assignees: [] explicitly empty; 0 comments; timeline has only 5 label events; no PRs exist in repo"},
+      {"name": "AI workflow permitted", "grade": "pass", "evidence": "docs/CONTRIBUTING.md, PR template and 4 issue templates inspected: no AI restriction stated"},
+      {"name": "Newcomer guidance", "grade": "pass", "evidence": "Labeled 'good first issue'; lists docs/API.md, api/routes/profiles.py, api/schemas/review.py"}
+    ],
+    "verdict": "accept"
+  },
+  {
+    "item": "https://github.com/codepath/pathreview-ai301-fa26-s3/issues/18",
+    "checks": [
+      {"name": "Maintainer activity", "grade": "pass", "evidence": "COLLABORATOR Aburke225 committed to main 2026-09-16 and renamed this issue 2026-09-16"},
+      {"name": "Project in use", "grade": "pass", "evidence": "archived: false; pushed_at 2026-09-16 is within 90 days"},
+      {"name": "Bounded contribution", "grade": "pass", "evidence": "One outcome: supply a file list under 'file_structure'; two named files, 2–4h; no maintainer statement that it needs core-internals work"},
+      {"name": "Repeated failed attempts", "grade": "pass", "evidence": "Opened 2026-09-10 (12 days old); repo has 0 PRs in any state"},
+      {"name": "Available to work on", "grade": "pass", "evidence": "assignees: [] explicitly empty; 0 comments; timeline has only label + rename events; no PRs exist in repo"},
+      {"name": "AI workflow permitted", "grade": "pass", "evidence": "docs/CONTRIBUTING.md, PR template and 4 issue templates inspected: no AI restriction stated"},
+      {"name": "Newcomer guidance", "grade": "pass", "evidence": "Labeled 'good first issue'; names _detect_tests()/_detect_ci() and both relevant files"}
+    ],
+    "verdict": "accept"
+  }
+]
+```
 ---
 
 ## Eval iterations
