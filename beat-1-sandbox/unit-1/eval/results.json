@@ -1,0 +1,914 @@
+{
+  "rubric": "/Users/anshbabar/.claude/skills/issue-select/rubric.md",
+  "model": "sonnet",
+  "agreement": [
+    18,
+    20
+  ],
+  "results": [
+    {
+      "id": "issue-01",
+      "verdict": "reject",
+      "failed_checks": [
+        "Bounded contribution",
+        "Newcomer guidance"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits (all 2026-08-04) are merged human PRs by codewithdaniel1 and danyeaw."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; release 26.7.0 on 2026-07-31 (<365 days); last push 2026-08-04 (<90 days)."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "fail",
+          "evidence": "Issue lists five distinct deliverables across five files (new page; updates to manage-pkgs.rst, pip-interoperability.rst, new-features.md; optional troubleshooting.rst entry) \u2014 umbrella-style scope intended to be split, not one concrete outcome."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Opened 2026-07-31 (days old); linked PRs: none."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "Assignees: none; linked PRs: none; 0 comments (no claims)."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "CONTRIBUTING.md Generative AI section: 'generative AI tools welcome; you are responsible for all contributions and must review and understand AI-generated content.'"
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "fail",
+          "evidence": "Only label is type::documentation (no good-first-issue label); file references come from the issue author (CONTRIBUTOR), not a maintainer comment, and there are 0 comments."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-02",
+      "verdict": "reject",
+      "failed_checks": [
+        "Maintainer activity",
+        "Project in use",
+        "Newcomer guidance"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "fail",
+          "evidence": "Last 5 default-branch commits are all 2021-2023 and all 5 sampled issues show 'no maintainer comment in thread'; this issue's comments are both NONE-association"
+        },
+        {
+          "name": "Project in use",
+          "grade": "fail",
+          "evidence": "Latest release v1.12 on 2023-12-09 (>365 days before capture 2026-08-05); last push 2024-06-19 (>90 days before capture)"
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "Single concrete fix: make `sed -i` portable across GNU/BSD, with exact before/after code"
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Issue opened 2026-03-11, ~5 months old at capture, not 2+ years old"
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "Repo facts: 'this issue: assignees: none; linked PRs: none'; no claim comments in thread"
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "Repo facts: 'no CONTRIBUTING.md in the repo; no stated policy' \u2014 inspected and confirmed absent"
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "fail",
+          "evidence": "labels: none; no maintainer comment exists to point at a specific file/function"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-03",
+      "verdict": "reject",
+      "failed_checks": [
+        "Repeated failed attempts",
+        "Available to work on"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "4 of last 5 default-branch commits (2026-08-02/03) are human maintainer commits, within 90 days of capture 2026-08-05."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; release v4.0.6 on 2026-06-14 and push on 2026-08-03, both within thresholds of capture 2026-08-05."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "Issue requests a single concrete deliverable: adding a pylint-junit reporter class to pylint."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "fail",
+          "evidence": "Opened 2023-10-12 (>2 years before 2026-08-05 capture) with 3 distinct closed-unmerged PRs (#10987, #11001, #11008)."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "fail",
+          "evidence": "Linked PR #10985 is open and DanielNoord (COLLABORATOR) states 'We are not looking for any other contributions other than @hamza-mobeen's PR: #10985'."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "CONTRIBUTING.md has no AI/tooling restriction; repo ships AGENTS.md for AI coding agents."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "pass",
+          "evidence": "Issue carries the 'Good first issue' label."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-04",
+      "verdict": "accept",
+      "failed_checks": [],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits (2026-08-04) are human commits/merges by RazinShaikh and 96-LB, within 90 days of the 2026-08-05 capture date."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "archived: no; last push 2026-08-04 (<90 days); latest release v1.0.0 on 2026-04-29 (<365 days)."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "Issue asks for one identifiable outcome \u2014 implement missing rule previews (remove identity, fuse spiders, remove self loops) \u2014 with no umbrella/tracking language or core-internals requirement stated; rubric notes a short description alone does not fail this check."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Issue opened 2026-08-04, one day before capture; no linked PRs listed at all, let alone 2 abandoned ones."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "assignees: none; linked PRs: none; comments: 0 total, so no unresolved claim exists."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "contribution policy (CONTRIBUTING.md): no statement on AI or contribution tooling \u2014 an inspected surface with no restriction passes."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "pass",
+          "evidence": "Labels include 'good first issue'."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-05",
+      "verdict": "reject",
+      "failed_checks": [
+        "Bounded contribution",
+        "Available to work on"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits (2026-07-31 to 2026-08-04) are all human maintainer commits/merges, within 90 days of the 2026-08-05 capture."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; last push to any branch was 2026-08-04, one day before capture."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "fail",
+          "evidence": "Maintainer: 'PRs are welcome both big and small... not necessarily anywhere in the codebase'; issue lists 12 separate linked PRs and maintainer repeatedly tells newcomers to pick their own file rather than defining one scoped outcome."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Issue opened 2025-12-21, under 1 year old at 2026-08-05 capture, so the '\u22652 years old' precondition is not met."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "fail",
+          "evidence": "Linked PRs #28815, #28817, and #28839 are listed as open implementation PRs against this issue at capture time."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "Contribution policy line: CONTRIBUTING.md has 'no statement on AI or contribution tooling' \u2014 inspected surface with no restriction."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "pass",
+          "evidence": "Issue carries 'good first issue' and 'Easy to Fix' labels."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-06",
+      "verdict": "accept",
+      "failed_checks": [],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits by human maintainer abubakr-itqan dated 2026-07-13/14, within 90 days of capture date 2026-08-05."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; last push to any branch 2026-07-31, within 90 days of capture date 2026-08-05."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "Single concrete fix (Submit App button visibility/functionality) with clear acceptance criteria and a 'Where to start' pointer to specific components."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Issue opened 2026-08-05, same day as capture; no linked PRs or prior attempts exist."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "assignees: none; linked PRs: none; 0 comments, so no claim or open implementation PR."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "Contribution policy: 'no statement on AI or contribution tooling' \u2014 inspected surface with no AI restriction."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "pass",
+          "evidence": "Labeled 'good first issue' and maintainer specifies src/app/components/header/ and src/app/components/mobile-menu/ as starting points."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-07",
+      "verdict": "reject",
+      "failed_checks": [
+        "Maintainer activity",
+        "Project in use",
+        "Newcomer guidance"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "fail",
+          "evidence": "Most recent default-branch commit is 2025-02-10, ~18 months before the 2026-08-05 capture date; maintainer first-response sample shows 'no maintainer comment in thread' for all 5 sampled issues."
+        },
+        {
+          "name": "Project in use",
+          "grade": "fail",
+          "evidence": "latest release: none published; last push to any branch: 2025-02-27, ~17 months before capture date 2026-08-05, exceeding the 90-day push window."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "Issue identifies a single concrete AttributeError crash with a named root cause ('get_ith_path lambda... returns None') and reproduction steps."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Issue opened 2026-02-28, only ~5 months before the 2026-08-05 capture date, so the 2-year-age condition is not met."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "'this issue: assignees: none; linked PRs: none' and 0 comments in the thread."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "'no CONTRIBUTING.md in the repo; no stated policy' \u2014 inspected policy surface with no AI restriction."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "fail",
+          "evidence": "labels: none; the root-cause detail was supplied by the reporter (association NONE), not a maintainer."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-08",
+      "verdict": "reject",
+      "failed_checks": [
+        "Bounded contribution",
+        "Available to work on"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "3 of last 5 default-branch commits on 2026-08-03; MEMBER amanagr commented on the issue thread on 2026-07-24."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; release 12.1 on 2026-06-26 and last push 2026-08-04, both within thresholds."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "fail",
+          "evidence": "Migration is being split per-banner ('one banner type at a time' agreed by amanagr) with PR #39811 covering only the first banner, plus an unresolved design question on extending the banner component for data attributes/action buttons."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Issue opened 2026-07-21, far under the 2-year age threshold."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "fail",
+          "evidence": "Assignee piyushagarwal-55 is current and linked PR #39811 is open; the zulipbot auto-unassign (4 more days from 2026-08-03) had not yet taken effect as of the 2026-08-05 capture."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "CONTRIBUTING.md AI use policy allows AI tools with disclosure/understanding/testing conditions, no outright ban."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "pass",
+          "evidence": "Issue carries the 'good first issue' label."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-09",
+      "verdict": "accept",
+      "failed_checks": [],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits (all human, non-bot authors) most recent on 2026-08-04, 1 day before the 2026-08-05 capture date."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; release 26.7.0 on 2026-07-31 and push on 2026-08-04, both within their respective windows."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "Issue requests one concrete feature: `conda config --clear <key>` to empty a list entry, with a specific example output."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Issue is from 2018 (>2 years old) but only one linked PR (#11627, closed) is documented, short of the required 2 abandoned attempts."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "No assignees; MesaJonathan's 2022-01-20 claim is over 4 years stale (not within 30 days of the 2026-08-05 capture), and the only linked PR (#11627) is closed-unmerged, which doesn't reserve the issue."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "CONTRIBUTING.md Generative AI section welcomes AI tools, requiring only that the contributor review and understand AI-generated content before submitting."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "pass",
+          "evidence": "Issue carries the `good first issue` label."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-10",
+      "verdict": "reject",
+      "failed_checks": [
+        "Bounded contribution"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits (2026-08-04/05) include human maintainer merges (Managor, IMHOJEONG, Gauravtiwari31), and MEMBER comments appear on this issue as recently as 2026-06-25."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Repo facts: last push to any branch: 2026-08-05 (same day as capture), not archived."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "fail",
+          "evidence": "Issue titled 'Documentation request megaissue' lists 100+ separate linked issues 'so that anyone could try their hand at making pages' \u2014 an umbrella/tracking issue, not one concrete contribution."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Opened 2025-10-04, captured 2026-08-05 \u2014 under 2 years old, so the age+attempts condition cannot be met regardless of the single closed-unmerged linked PR (#18634)."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "No assignees; most recent claim comment (2026-06-25) is over 30 days before capture (2026-08-05) and was answered only with a pointer to general contribution guidelines, not a grant of exclusivity."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "CONTRIBUTING.md discourages generative AI for new pages and closes PRs made 'without human review,' implying disclosed, human-reviewed AI assistance is not banned."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "pass",
+          "evidence": "Issue carries the 'good first issue' label."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-11",
+      "verdict": "accept",
+      "failed_checks": [
+        "Newcomer guidance"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits (2026-08-04) are human maintainer commits/merges (RazinShaikh, 96-LB), 1 day before capture date 2026-08-05."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; release v1.0.0 on 2026-04-29 (within 365 days); last push 2026-08-04 (within 90 days)."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "Single concrete bug: rewrite applies multiple times on one click, producing duplicate node clusters \u2014 not umbrella/tracking work."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Opened 2026-05-08, under 3 months old at capture, far below the 2-year threshold; linked PRs: none."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "assignees: none; linked PRs: none; 0 comments, so no claims or open implementation PRs."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "CONTRIBUTING.md: 'no statement on AI or contribution tooling' \u2014 inspected policy surface with no AI restriction."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "fail",
+          "evidence": "Labels are Type: bug/Category: Proof mode/Priority: Medium with no good-first-issue label, and 0 comments means no maintainer points to specific file/function/test."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-12",
+      "verdict": "reject",
+      "failed_checks": [
+        "AI workflow permitted"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits (2026-08-08 to 2026-08-12) are all human, within 90 days of capture date 2026-08-12."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; release v0.9.1 on 2026-07-20 (<365 days); last push 2026-08-12 (<90 days)."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "Single concrete request: reflect in-progress book percentage in the reading-goal progress bar."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Opened 2021-05-24 (>2yr old) but linked PRs: none, and only one exploratory comment (jrings, 2024-09-19) with no PR \u2014 fewer than 2 abandoned attempts."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "No assignee, no linked PRs; jrings' 2024-09-19 claim comment is far outside the 30-day window from the 2026-08-12 capture date."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "fail",
+          "evidence": "Contribution policy: 'We do not accept AI-generated code or documentation.'"
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "pass",
+          "evidence": "Issue carries the 'good first issue' label."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-13",
+      "verdict": "reject",
+      "failed_checks": [
+        "Available to work on"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "2026-08-03 merge of human PR #23409 from a4abdul7, within 90 days of capture"
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "not archived; release v1.38.1 on 2026-02-19 and push on 2026-08-03, both within thresholds"
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "Issue lists four specific files and one concrete fix: replace spaces with tabs"
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Issue opened 2026-08-04, not close to the 2-year age threshold"
+        },
+        {
+          "name": "Available to work on",
+          "grade": "fail",
+          "evidence": "linked PRs: kubernetes/minikube#23438 (open); kubernetes/minikube#23439 (open) \u2014 open implementation PRs already exist"
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "CONTRIBUTING.md inspected: 'no statement on AI or contribution tooling'"
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "pass",
+          "evidence": "labels: good first issue"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-14",
+      "verdict": "accept",
+      "failed_checks": [],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits (2026-08-01\u20132026-08-05) are all human maintainer commits by SaifAlYounan and sergiomaldo."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; latest release desktop-v0.6.2 (2026-07-04); last push 2026-08-05."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "Issue lists 6 specific files with exact line-level edits and explicit scope boundaries ('leave this one alone', 'don't add any other channels')."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Issue opened 2026-08-04 (one day before capture); linked PRs: none."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "Assignees: none; linked PRs: none; 0 comments on the issue."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "\"contribution policy (CONTRIBUTING.md): no statement on AI or contribution tooling\" \u2014 inspected, no restriction."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "pass",
+          "evidence": "Labels include 'good first issue'; maintainer specifies exact files/line numbers to edit."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-15",
+      "verdict": "reject",
+      "failed_checks": [
+        "Repeated failed attempts"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits (2026-07-14 to 2026-08-03) are all human commits, within 90 days of capture 2026-08-05."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; release 12.1 on 2026-06-26 and last push 2026-08-04, both within thresholds."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "Issue requests one concrete change: split bot-mention/command from message text in outgoing webhook payload, with sample payload provided."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "fail",
+          "evidence": "Opened 2021-08-18 (~5 years before capture) with two distinct closed-unmerged linked PRs (#20840, #23123)."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "Repo facts: assignees: none; linked PRs #20840 and #23123 both closed, no open implementation PR."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "CONTRIBUTING.md AI use policy permits AI tools conditioned on contributor understanding/testing/explaining changes; no ban."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "pass",
+          "evidence": "Issue carries the 'good first issue' label."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-16",
+      "verdict": "accept",
+      "failed_checks": [
+        "Newcomer guidance"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits all dated 2026-08-04 (within 90 days of 2026-08-05 capture), authored by human contributors codewithdaniel1 and danyeaw."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; latest release 26.7.0 on 2026-07-31 (within 365 days); last push 2026-08-04 (within 90 days)."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "Issue asks for one fix: channel notices printed as raw text on stderr break JSON parsing / are invisible in --json output \u2014 a single identifiable outcome, no umbrella scope stated."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Opened 2026-08-03, captured 2026-08-05; not 2+ years old and 'linked PRs: none' \u2014 no abandoned attempts."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "assignees: none; linked PRs: none; 'Comments (0 total, first 0 shown)' \u2014 no claims or open PRs."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "CONTRIBUTING.md 'Generative AI' section explicitly welcomes generative AI tools, conditioned on contributor review/understanding \u2014 no ban."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "fail",
+          "evidence": "Labels: 'type::bug' only (no good-first-issue label); 0 comments means no maintainer pointed to a specific file/function."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-17",
+      "verdict": "reject",
+      "failed_checks": [
+        "Maintainer activity",
+        "Project in use",
+        "Newcomer guidance"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "fail",
+          "evidence": "Last default-branch commit 2021-11-13, last sampled maintainer issue response on issue opened 2021-12-28; capture date is 2026-08-05, far beyond 90 days"
+        },
+        {
+          "name": "Project in use",
+          "grade": "fail",
+          "evidence": "Repo facts: archived: yes"
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "Single concrete bug report (video search broken) with debug log and attached HTML response, no scope ambiguity"
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Issue is old (opened 2021-11-20) but linked PRs: none, so zero abandoned attempts exist"
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "assignees: none; linked PRs: none; 0 comments"
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "contribution policy: no CONTRIBUTING.md in the repo; no stated policy \u2014 inspected surface with no restriction"
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "fail",
+          "evidence": "labels: none; 0 comments, so no maintainer points to a specific file/function"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-18",
+      "verdict": "reject",
+      "failed_checks": [
+        "Available to work on"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits (all 2026-08-04) are by human maintainers dwelle, yanrin13, nihaarsirikonda."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; last push 2026-08-04; latest release v0.18.1 on 2026-04-21, within 365 days."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "pass",
+          "evidence": "dwelle (MEMBER): \"Yep, let's do this (not showing the line option).\" \u2014 concrete, agreed scope."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Issue opened 2025-06-15, captured 2026-08-05 \u2014 under the 2-year age threshold required to fail this check."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "fail",
+          "evidence": "Linked PRs #9685, #10371, #11656, and LennyMalcolm0/excalidraw#314 are all still open; vishnukumar650 posted an unresolved claim on 2026-08-02, only 3 days before capture."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "CONTRIBUTING.md: \"no statement on AI or contribution tooling\" \u2014 inspected, no restriction found."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "pass",
+          "evidence": "Issue labeled \"good first issue\"."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-19",
+      "verdict": "reject",
+      "failed_checks": [
+        "Bounded contribution",
+        "Newcomer guidance"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits all human (RazinShaikh, 96-LB) dated 2026-08-04, within 90 days of capture date 2026-08-05."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; last push 2026-08-04 (within 90 days); latest release v1.0.0 on 2026-04-29 (within 365 days)."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "fail",
+          "evidence": "Issue names two distinct root causes ('quadratic instead of linear' matchers and UI blocked on matching thread) plus three additional suggestions (multi-processing, category-scoped matching, separate-thread rewrite application), bundling multiple potential fixes/approaches to core matcher/threading internals rather than one concrete outcome."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Opened 2026-05-08, far under 2 years old; linked PRs: none."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "Assignees: none; linked PRs: none; 0 comments, so no unresolved claim."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "Contribution policy: 'no statement on AI or contribution tooling' \u2014 no restriction on the planned AI-assisted contribution."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "fail",
+          "evidence": "Labels are 'Type: bug, Category: Proof mode, Priority: High' \u2014 no good-first-issue label and no maintainer-identified file/function/test."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "issue-20",
+      "verdict": "reject",
+      "failed_checks": [
+        "Bounded contribution",
+        "Newcomer guidance"
+      ],
+      "checks": [
+        {
+          "name": "Maintainer activity",
+          "grade": "pass",
+          "evidence": "Last 5 default-branch commits (all 2026-08-04, by dwelle/yanrin13/nihaarsirikonda) are within 90 days of the 2026-08-05 capture date."
+        },
+        {
+          "name": "Project in use",
+          "grade": "pass",
+          "evidence": "Not archived; last push 2026-08-04 (within 90 days) and release v0.18.1 on 2026-04-21 (within 365 days)."
+        },
+        {
+          "name": "Bounded contribution",
+          "grade": "fail",
+          "evidence": "Request is for a new first-class toolbar shape/element (create, resize, move, export) with 'Logo asset TBD' and no maintainer scoping (0 comments, no labels, opened by cursor[bot]) \u2014 core-internals-level, unbounded feature work."
+        },
+        {
+          "name": "Repeated failed attempts",
+          "grade": "pass",
+          "evidence": "Opened 2026-08-02, captured 2026-08-05; 'linked PRs: none' \u2014 no prior attempts, not remotely 2 years old."
+        },
+        {
+          "name": "Available to work on",
+          "grade": "pass",
+          "evidence": "assignees: none; linked PRs: none; 0 comments in thread."
+        },
+        {
+          "name": "AI workflow permitted",
+          "grade": "pass",
+          "evidence": "CONTRIBUTING.md: 'no statement on AI or contribution tooling' \u2014 inspected surface with no restriction."
+        },
+        {
+          "name": "Newcomer guidance",
+          "grade": "fail",
+          "evidence": "No good-first-issue label; the surface note ('packages/excalidraw editor') comes from the bot-authored issue body, not a maintainer comment."
+        }
+      ],
+      "error": null
+    }
+  ]
+}
