@@ -87,30 +87,49 @@ fields.
 
 **Run history**
 
-[The agreement score of each run you did, in order. A single run is a complete answer if
-only one run occurred. **The last score in your list must match the agreement line in the
-`eval-run.txt` you committed** — that file is the record of your final run.]
+1. First full run: **18/20** agreement. The disagreements were `pkg-09` and `pkg-20`. The category results were `clear-accept 7/8`, `disclosure 0/1`, `no-evidence 4/4`, `unfollowable-comms 3/3`, and `wrong-target 4/4`. Although the overall agreement reached 18/20, the run did not pass because the disclosure category had no match.
+2. After revising the rubric and evidence guide, I ran `--only pkg-09,pkg-20,pkg-07,pkg-17`. This targeted run achieved **4/4** agreement. It checked both original disagreements and two previously correct packages for regressions. As a partial run, it did not establish the full evaluation bar.
+3. I ran a confirming full evaluation with the revised files and `--save-run eval-run.txt`. It achieved **20/20** agreement. This is the final run submitted in `eval-run.txt`.
 
 **Package analysis**
 
-[Pick one scored package (`pkg-01` through `pkg-20` — the four `calib-` packages are never
-scored). Name it by id, say what your rubric decided and what the gold label said, and
-explain why your rubric read it that way.]
+For `pkg-09`, my initial rubric returned **reject**, while the gold label was **accept**.
+
+The grader marked “Followable reproduction” as `unclear` because:
+
+> The padded/asymmetric second attempt is described in prose only; no exact command given for it.
+
+It also failed “Evidence targets the issue” because the shown output did not establish that one command reached its argument-size limit before the other.
+
+However, the report explicitly limited its conclusion:
+
+> I could NOT reproduce scenario 2
+
+It also acknowledged that:
+
+> my padding approach may not achieve that
+
+The package supplied a repeatable primary attempt, its output, and an explanation of why the required trigger might not have been achieved. My original checks treated successful trigger creation as necessary even for this honestly limited failed attempt. They also let missing details for the exploratory follow-up invalidate the documented primary attempt.
+
+I revised the checks to distinguish a claimed reproduction from an evidenced, bounded cannot-reproduce report. After revision, `pkg-09` returned **accept**, matching the gold label in the targeted rerun and the confirming full run.
 
 **Check rationale**
 
-[Quote one check from the `rubric.md` you uploaded to `tools/repro-check/`, exactly as it reads now.
-Then say why it reads that way — what you revised to get there, or what you rejected in
-favour of it.]
+The “Followable reproduction” check in my final rubric reads:
+
+| Check | Evidence | Pass condition | Weight |
+|---|---|---|---|
+| Followable reproduction | The repro report's setup instructions, actions, commands, inputs, and referenced fixtures or resources. | A reader can repeat the primary investigation supporting the stated outcome using the supplied or accessible inputs and instructions. For an honestly limited cannot-reproduce report, require a repeatable documented attempt, not a successful trigger. An incompletely documented exploratory follow-up does not invalidate that primary attempt unless the conclusion depends on the follow-up; do not treat the follow-up as independently verified. Essential private or missing resources still block acceptance. | required |
+
+I revised this check after examining `pkg-09`. The original wording was too strict about reproducing every exploratory action and establishing the trigger. The revised wording requires enough information to repeat the primary investigation while allowing a report to explain that its attempt did not establish the necessary conditions. Missing resources still block acceptance when they are essential to the conclusion.
 
 **Trade-offs**
 
-[Every check gives something up. Any one of these is a complete answer: a package whose
-result it changes, a canary you re-ran with `--only`, a case you accept it will miss, or a
-stated reason nothing changed elsewhere. "Nothing changed, and here is how I know" earns
-the point in full when the reason follows.]
+The revised reproduction checks allow useful but incomplete investigations to be posted. The trade-off is that an accepted report may leave the trigger unresolved or include a follow-up that cannot independently be verified. I limit this by requiring a repeatable primary attempt, concrete observations, and a conclusion that acknowledges those limits.
 
----
+I reran `pkg-17` to check that this change did not excuse a report claiming reproduction of the wrong behavior. It remained **reject**, matching the gold label.
 
-Related paths: `eval-run.txt` in this directory; your skill's files in
+The disclosure revision makes the checker more conservative: when a repository requires disclosure, unstated AI-assistance status produces `unclear` rather than an assumption of compliance. This could hold a comment written without AI assistance until its author clarifies that status. It is a readiness standard chosen for this rubric, not proof that the author used AI or that the repository requires a declaration of non-use.
+
+In the targeted rerun, `pkg-20` changed to the expected **reject**, while `pkg-07`, which had previously passed with disclosure, remained **accept**. The confirming full run achieved **20/20**, so no final verdict disagreed with a gold label in that run.
 `tools/repro-check/`.
