@@ -233,3 +233,17 @@ running the verification commands.
   failure and resolve it or explain it before merge. CI has not been run on
   this change yet.
 - **Whitespace.** `git diff --check` passed.
+
+### Unit 4 verification in ChatGPT's workspace
+
+ChatGPT re-ran verification on Linux x86_64 with Python 3.12.14 and pytest
+9.1.1 at branch commit `a8a5856d91f541a552f5095b87c524015f30579a`. An isolated
+main worktree at `2f4e82f52efbcfcc57d65b3fa5348672163ca088` reproduced
+`assert 51 > 100`; the branch passed with 632 words and category comprehensive.
+The full README scorer file passed 23 tests; `make test-unit` reported
+376 passed, 52 xfailed, and 5 warnings. `make lint` passed. `make typecheck`
+passed with no issues in 76 source files in this environment; the earlier
+macOS failure is not retracted or claimed repaired. `make test-integration`
+reported no tests ran (pytest exit 5, make exit 2), as the Unit 4 assignment
+expects. CI remains unverified. No implementation changes were made for
+this verification.
