@@ -54,9 +54,9 @@ happened; these entries are the toolkit's own timeline.
 All four entries are graded. Keep every heading below, and fill each
 one in the week it belongs to.
 
-**Unit 5: Prepared issue-scout and a profile-based search strategy (2026-11-07; scan pending)**
+**Unit 5: Built and tested issue-scout for real repositories (2026-11-07)**
 
-With ChatGPT's help, I prepared the Unit 5 issue-scout files, carried forward my Unit 1 rubric and evidence guide, and drafted two search queries for Python and TypeScript issues. My saved fit profile was still a placeholder, so I drafted one focused on small bugs and test improvements, added ranking rules using assignees, update dates, labels, comment counts, and repository names, and removed the sandbox-only claim exception from the new rubric. GitHub search previews timed out during setup, and the required Claude scan and grading of Issue Selection site picks are still pending; this entry needs a follow-up after I inspect those results.
+With ChatGPT's help, I upgraded issue-select to issue-scout, drafted a Python/TypeScript fit profile, wrote two search queries with metadata-based ranking rules, and removed the sandbox-only claim exception from the new rubric. My Claude scan retrieved 200 unique issues and graded five, accepting two, but only one fit my goals; ranking by fewest comments favored new or automated issues, and recent issue updates did not prove that a repository was active. I then graded two candidates from the course Issue Selection site: both were accepted, with JWST #1010 a stronger fit because it is a focused Python data-model bug, while NomNom #358 is a UI feature with more setup. The direct grading also showed that a recent human commit can satisfy my activity check even when outside PRs wait for review, so I would add a preferred responsiveness check and revise the search ranking; those follow-up changes have not yet been implemented.
 
 **Unit 6: [one line on the tool work]**
 
