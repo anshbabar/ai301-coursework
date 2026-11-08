@@ -1,4 +1,4 @@
-# Contribution: [Issue Title]
+# Contribution: Keep MAST download file counts consistent
 
 Path: `beat-2-contribution/contribution-story.md`
 
@@ -10,7 +10,7 @@ files and no evidence uploads are part of Assignment 5.
 **Contribution Number:** 1
 **Student:** Ansh Babar
 **GitHub Username:** anshbabar
-**Issue:** [GitHub issue link]
+**Issue:** https://github.com/Snoww3d/jwst-data-analysis/issues/1010
 **Pull Request:** [GitHub PR link, once opened]
 
 One repository, built across units 5 to 8, telling the whole story of your real
@@ -78,24 +78,18 @@ drafted, what you did with the draft.]
 
 ## Why I Chose This Issue
 
-[1-2 paragraphs in your own words: how you searched, what your scan
-surfaced, what your scout's verdict said, why this issue fits your
-profile, and what you hope to learn. If your scout's verdict on it
-was reject and you chose it anyway, say so here and say why; choosing
-against your own tool silently is what loses points. Close with an
-honest read of the tool itself: where the scout fell short on a real
-wild search and what you changed or would change, or what convinced
-you it held up. **Record the link to your claim comment in this section too.**
-Not claimed yet? Write `claim pending` and today's date where the link goes,
-and add the link the moment your claim lands.]
+I selected JWST Data Analysis #1010 from the CodePath Issue Selection site after using my scout to grade it alongside NomNom #358. Both were accepted, but #1010 fits my Python experience and preference for small, testable bugs more closely: its download response stores a list of files and a separate count that can disagree. NomNom's alternative is a UI feature with more environment setup, while this issue gives me a focused opportunity to learn Pydantic computed fields and API serialization.
+
+My original broad scan returned two accepted issues, but only one matched my profile well, so I used the course site's candidates for the actual contribution. The scout helped identify the requirement to preserve `file_count` in JSON, outdated issue line numbers, and the project's PR-template checks; it also revealed a limitation in my activity rubric, since recent human activity does not guarantee timely review of outside PRs. I would add responsiveness as a preferred signal rather than assume acceptance means a quick merge.
+
+**Claim comment:** https://github.com/Snoww3d/jwst-data-analysis/issues/1010#issuecomment-6717940186
 
 **Toolkit**
 
-- Tool: issue-scout (your scout: your search strategy, your rubric),
-  and how you used it
-- What it produced: [the scan and its verdict on this issue, described]
-- Difficulties: [where it fell short, or "none met" if none did]
-- What changed: [what you patched or would update, or "nothing"]
+- Tool: issue-scout, run in Claude for a broad scan and direct grading of two course-site candidates; ChatGPT helped inspect the current code and issue discussions.
+- What it produced: two accepted direct-grading verdicts, with JWST #1010 ranked as the stronger fit.
+- Difficulties: broad-search ranking favored new or automated issues; project language did not guarantee task-language fit; the activity check could pass despite slow outside-PR review.
+- What changed: removed the classroom claim exception during setup and used direct grading of curated candidates; a responsiveness preference and revised ranking remain proposed changes.
 
 ---
 
