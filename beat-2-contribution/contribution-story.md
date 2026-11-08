@@ -7,10 +7,9 @@ the repository is not read. **Keep every section header below under its exact na
 format criteria grade exactly that. Your course repo link is the whole submission: no tool
 files and no evidence uploads are part of Assignment 5.
 
-**Contribution Number:** [1]
-**Student:** [Student name]
-**GitHub Username:** [your GitHub username, exactly as it appears on your profile - no @, no
-profile URL. Your comments upstream are identified by this name.]
+**Contribution Number:** 1
+**Student:** Ansh Babar
+**GitHub Username:** anshbabar
 **Issue:** [GitHub issue link]
 **Pull Request:** [GitHub PR link, once opened]
 
@@ -55,10 +54,9 @@ happened; these entries are the toolkit's own timeline.
 All four entries are graded. Keep every heading below, and fill each
 one in the week it belongs to.
 
-**Unit 5: [one line on the tool work]**
+**Unit 5: Prepared issue-scout and a profile-based search strategy (2026-11-07; scan pending)**
 
-[2-4 sentences: what you built (the scout, your strategy), what broke
-or fell short, what changed because of it.]
+With ChatGPT's help, I prepared the Unit 5 issue-scout files, carried forward my Unit 1 rubric and evidence guide, and drafted two search queries for Python and TypeScript issues. My saved fit profile was still a placeholder, so I drafted one focused on small bugs and test improvements, added ranking rules using assignees, update dates, labels, comment counts, and repository names, and removed the sandbox-only claim exception from the new rubric. GitHub search previews timed out during setup, and the required Claude scan and grading of Issue Selection site picks are still pending; this entry needs a follow-up after I inspect those results.
 
 **Unit 6: [one line on the tool work]**
 
