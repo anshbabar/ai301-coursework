@@ -66,10 +66,9 @@ I installed the voice guard in `~/.claude/voice-guard/`. My voice guide now has 
 
 The install was already complete, and a fresh `claude -p` hook test was stopped by both the voice guard and the ship-gate. My manifest has four rows from CONTRIBUTING.md and `ci.yml`: an image rebuild first, because the processing container has no source mount, then pytest with the CI coverage floor, `ruff check`, and `ruff format --check`, all run in the container. The first manual gate run (22:45) passed all four checks, but my pr-precheck **rejected** the package on two checks, and both were right. The body said `Fixes #1010` where CONTRIBUTING.md and the template ask for `Closes #N`, and my `validate-pr.sh` run wasn't recorded in `test_evidence.md`. I fixed the package instead of the rubric, so I made no rubric changes, and the gate passed at 22:47. A further description-fidelity nit (I'd written "191 files formatted" for the baseline, which was 190) got fixed too, and the final run on the final body passed at 22:50. That final PASS is what I shipped: I opened PR #2178 from commit `c40bb3f` on 2026-11-08 07:01 UTC. The gate's PASS covers my local manifest (pytest, ruff check, ruff format) and pr-precheck, not the repo's CI. On the PR, only the PR Standards workflow has run, and it passed; CI, Security, Danger Zone, and Claude Code Review are awaiting maintainer approval to run, since this is my first contribution. The gate also stopped one of my own story-editing shell commands, because its text named the PR-create command. That was annoying but fair, and I moved those edits into a script file.
 
-**Unit 8: [one line on the tool work]**
+**Unit 8: Installed the PR monitor, wrote an evidence-based playbook, and kept its wait note local (2026-11-07)**
 
-[2-4 sentences: the PR-monitor and your playbook. What it read, what it
-drafted, what you did with the draft.]
+With Claude Code, I installed the PR monitor in `~/.claude/pr-monitor/` (no earlier playbook existed to preserve) and ran `monitor.py --state` on `fix/mast-download-file-count`, which found PR #2178 in Snoww3d/jwst-data-analysis: 0 reviews, 0 comments, "1 passing" check, MERGEABLE but BLOCKED. My playbook's 5-day first-review nudge threshold is labeled provisional because the evidence is thin: CONTRIBUTING.md states no wait, and only one of the repo's 1,208 merged PRs came from an outside contributor (#1963: maintainer comment in 27 minutes, merged in about 18 hours), not the five examples I looked for, while the unmerged outside PR #1995 has had no maintainer reply in 61 days. The full run (23:11 PST) drafted "No nudge yet. Write a wait note instead.", which matches both the empty thread and my rules, so I'm following it by doing nothing on GitHub and keeping the note local. Its limitation is that it reads only the PR's check rollup: it reported "1 passing" without seeing that CI, Security, Danger Zone, and Claude Code Review are `action_required` (waiting for maintainer approval, not failed), which I confirmed separately with `gh api .../actions/runs`.
 
 ---
 
@@ -141,8 +140,49 @@ On `main` at `08629875`, from my reproduction: `files=[2 items], file_count=99` 
 
 **Reproduction Evidence**
 
-- **Commit showing reproduction:** none. I didn't commit anything to my fork. The repro is an out-of-tree script run against the unmodified upstream commit https://github.com/Snoww3d/jwst-data-analysis/commit/08629875175f57b174a97c6d42ff89967ef0c68e. The full script and output are in my repro draft (`ai301-unit6-starter/repro-draft.md`), which hasn't been posted.
-- **Screenshots/logs:** key lines of the exit-0 run:
+- **Commit showing reproduction:** none. I didn't commit anything to my fork. The repro is an out-of-tree script run against the unmodified upstream commit https://github.com/Snoww3d/jwst-data-analysis/commit/08629875175f57b174a97c6d42ff89967ef0c68e. The full script (`repro_1010.py`), run with `docker exec -i -w /app jwst-processing python - < repro_1010.py`:
+
+  ```python
+  import json, platform, sys
+  import fastapi, pydantic
+  from fastapi.encoders import jsonable_encoder
+  from fastapi.testclient import TestClient
+  from app.mast.models import MastDownloadResponse
+
+  print(f"python {platform.python_version()} on {platform.system()} {platform.machine()}")
+  print(f"pydantic {pydantic.VERSION}, fastapi {fastapi.__version__}")
+
+  common = dict(status="completed", obs_id="jw02733-o001_t001_nircam_clear-f090w",
+                timestamp="2026-11-07T00:00:00Z")
+
+  print("\n--- Case 1: two files, file_count=99 ---")
+  r1 = MastDownloadResponse(files=["a_cal.fits", "b_cal.fits"], file_count=99, **common)
+  print("file_count      =", r1.file_count)
+  print("len(files)      =", len(r1.files))
+  print("model_dump_json =", r1.model_dump_json())
+  print("jsonable_encoder=", json.dumps(jsonable_encoder(r1)))
+
+  print("\n--- Case 2: two files, file_count omitted ---")
+  r2 = MastDownloadResponse(files=["a_cal.fits", "b_cal.fits"], **common)
+  print("file_count      =", r2.file_count)
+  print("len(files)      =", len(r2.files))
+  print("model_dump_json =", r2.model_dump_json())
+
+  print("\n--- Case 3: HTTP response body via response_model=MastDownloadResponse ---")
+  app = fastapi.FastAPI()
+
+  @app.get("/mismatch", response_model=MastDownloadResponse)
+  def mismatch() -> MastDownloadResponse:
+      return MastDownloadResponse(files=["a_cal.fits", "b_cal.fits"], file_count=99, **common)
+
+  resp = TestClient(app).get("/mismatch")
+  body = resp.json()
+  print("status          =", resp.status_code)
+  print("body            =", resp.text)
+  print("body file_count =", body["file_count"], "| len(body files) =", len(body["files"]))
+  ```
+
+- **Screenshots/logs:** key lines of the exit-0 run (the header printed `python 3.12.16 on Linux aarch64` and `pydantic 2.13.5, fastapi 0.141.1`):
 
   ```text
   --- Case 1: two files, file_count=99 ---
@@ -208,7 +248,7 @@ Deviations (recorded in `plan.md` during the build on 2026-11-07, then re-graded
 
 ## Testing Strategy
 
-The fix is proved by four things I can observe, each run against a rebuilt image. The `jwst-processing` container has no source bind mount, so a stale image would test old code. Before every run I rebuilt with `cd docker && docker compose up -d --build --wait processing-engine` and checked that the container's file SHA-256s matched my working tree. Full outputs are in `test_evidence.md` at my clone root.
+The fix is proved by four things I can observe, each run against a rebuilt image. The `jwst-processing` container has no source bind mount, so a stale image would test old code. Before every run I rebuilt with `cd docker && docker compose up -d --build --wait processing-engine` and checked that the container's file SHA-256s matched my working tree. The key results are below; the full outputs are kept locally in `test_evidence.md` (not part of this submission).
 
 1. **Regression tests fail on the original code, then pass with the fix (red → green).** 7 model tests and 1 route test.
    - Against the unmodified `models.py`/`routes.py`: **6 failed, 2 passed**. The failures are the bug: `assert 99 == 2` (supplied count), `assert 0 == 2` (omitted count), `assert 0 == 3` (after `files.append`), `99 == 2` in `model_dump_json()` and in the round trip, and `DID NOT RAISE AttributeError`. The two passes were predicted: empty `files` is 0 either way, and the real route already counted the files.
@@ -254,7 +294,15 @@ The first after-fix manifest run failed `ruff check` (I001: two blank lines need
 
 **2026-11-07, 22:43 PST onward: PR draft and gate**
 
-I wrote `pr_draft.md` on the repo's full PR template (Owner summary, `Fixes #1010`, every required section, plus Notes for Reviewers with the AI disclosure). `./scripts/validate-pr.sh` with the intended title, `pr_draft.md`, and my branch passed, and the voice guard passed the draft. Manual ship-gate: run 1 (22:45) BLOCKED on my own pr-precheck (`Fixes` vs the repo's `Closes #N`, and an unrecorded `validate-pr.sh` run). I fixed both in the package, not the rubric; run 2 (22:47) passed, and after a wording fix (190 vs 191 formatted files) run 3 (22:50) passed on the final body. Nothing has been pushed, posted, or opened.
+I wrote `pr_draft.md` on the repo's full PR template (Owner summary, `Fixes #1010`, every required section, plus Notes for Reviewers with the AI disclosure). `./scripts/validate-pr.sh` with the intended title, `pr_draft.md`, and my branch passed, and the voice guard passed the draft. Manual ship-gate: run 1 (22:45) BLOCKED on my own pr-precheck (`Fixes` vs the repo's `Closes #N`, and an unrecorded `validate-pr.sh` run). I fixed both in the package, not the rubric; run 2 (22:47) passed, and after a wording fix (190 vs 191 formatted files) run 3 (22:50) passed on the final body. Nothing had been pushed, posted, or opened at that point.
+
+**2026-11-07, 23:01 PST (2026-11-08 07:01 UTC): pushed and opened the PR**
+
+I pushed `fix/mast-download-file-count` (head `c40bb3f`) to my fork and opened PR #2178 against `main` with the gated `pr_draft.md` body. The PR Standards workflow ("Validate PR Standards") passed at 07:01:38 UTC. CI, Security, Danger Zone, and Claude Code Review finished as `action_required`: GitHub is holding them for a maintainer to approve a first-time contributor's fork PR. They have not run, so they have neither passed nor failed.
+
+**2026-11-07, 23:10-23:12 PST: PR monitor and playbook (Unit 8)**
+
+Installed the PR monitor, ran `--state` (it found #2178 upstream, 0 reviews or comments), collected the waiting-time evidence (only one merged outside-contributor PR exists, #1963), filled the four playbook sections with provisional thresholds, and ran the full monitor. Its draft was a local wait note (no nudge before about 2026-11-13 07:01 UTC). Nothing was posted, rebased, or changed on the branch.
 
 **Toolkit**
 
@@ -269,7 +317,7 @@ I wrote `pr_draft.md` on the repo's full PR template (Owner summary, `Fixes #101
 
 **PR Link:** https://github.com/Snoww3d/jwst-data-analysis/pull/2178 (opened 2026-11-08 07:01 UTC, head commit `c40bb3f`)
 
-**PR Description:** drafted in `pr_draft.md` at my clone root, on the repo's full PR template. Title: `fix: derive MastDownloadResponse.file_count from files`.
+**PR Description:** posted as the PR body (drafted locally as `pr_draft.md`), on the repo's full PR template. Title: `fix: derive MastDownloadResponse.file_count from files`.
 
 - An Owner summary in plain language.
 - `Closes #1010`.
@@ -290,13 +338,13 @@ I wrote `pr_draft.md` on the repo's full PR template (Owner summary, `Fixes #101
 
 Before opening: commit `c40bb3f` is ready, and `./scripts/validate-pr.sh` passed. The final manual ship-gate (2026-11-07 22:50) passed: all 4 manifest checks green and all 6 pr-precheck checks passing. I then pushed `fix/mast-download-file-count` and opened PR #2178 with that body.
 
-Checks on the PR (head `c40bb3f`): the PR Standards workflow (Validate PR Standards) passed. The CI, Security, Danger Zone, and Claude Code Review workflows have not run; GitHub shows them as awaiting maintainer approval, which first-time contributors need. So the passing results so far are my local tests (2297 passed, coverage 80.35%, ruff clean) and PR Standards, not the full CI.
+Checks on the PR (head `c40bb3f`): the PR Standards workflow (Validate PR Standards) passed. The CI, Security, Danger Zone, and Claude Code Review workflows have not run; GitHub shows them as awaiting maintainer approval, which first-time contributors need. So the passing results so far are my local tests (2297 passed, coverage 80.35%, ruff clean) and PR Standards, not the full CI. No maintainer has approved the workflows or the PR.
 
 **Maintainer Feedback:**
 
-- None yet: no reviews or comments on the PR.
+- 2026-11-08 07:11 UTC (2026-11-07 23:11 PST): none yet. Checked with `gh` and the PR monitor: 0 reviews, 0 PR comments, 0 inline review comments, no review decision, and no new comment on #1010 since my claim. No feedback to address.
 
-**Status:** Awaiting review.
+**Status:** Awaiting review. Open and mergeable, merge state BLOCKED on a required review; four workflows (CI, Security, Danger Zone, Claude Code Review) are awaiting maintainer approval to run.
 
 **Toolkit**
 
@@ -314,25 +362,31 @@ Checks on the PR (head `c40bb3f`): the PR Standards workflow (Validate PR Standa
 
 **Technical Skills Gained**
 
-[What you learned technically, named concretely.]
+- Pydantic v2 field choices: a plain `@property` drops a key from the JSON, a validator only syncs at construction, and `@computed_field` keeps `file_count` serialized while always deriving it from `files`. The side effects were checked before the change: a supplied value is ignored, the key moves to the end of the JSON, OpenAPI marks it `readOnly`, assignment raises `AttributeError`, and mypy needs `# type: ignore[prop-decorator]`.
+- Testing against a Docker image with no source bind mount: rebuild before every run and compare file SHA-256s, or a "pass" can be against stale code.
+- Proving tests catch the bug: red (6 failed / 2 passed) on the original code, green (8 passed) with the fix, and a route-only mutant that fails `0 == 2`.
+- Reading GitHub's PR state: a fork PR's workflows can finish as `action_required`, which means waiting for maintainer approval, not a failed test; `BLOCKED` means a required review is missing, not a verdict on the code.
 
 **Challenges Overcome**
 
-[What was hard and how you solved it; point at the real events, the
-Toolkit blocks above are full of them.]
+- Stale-image risk: solved by making the image rebuild the first row of my ship manifest and checking hashes before each run.
+- Wrong baselines and lint: my plan's mypy baseline was false for `routes.py` (12 errors already on `main`), so I compared before and after instead; ruff's I001 on my new test failed the first after-fix run, so I fixed it and re-ran every manifest row.
+- PR conventions: pr-precheck rejected `Fixes #1010` (CONTRIBUTING.md asks for `Closes #N`) and an unrecorded `validate-pr.sh` run. Both were fixed in the package before opening.
+- Thin waiting-time evidence: only one merged outside-contributor PR exists in the repo, so the playbook's thresholds are written as provisional and say why.
 
 **What I'd Do Differently Next Time**
 
-[Reflection on your process.]
+- Run the voice guard before posting, not after: my #1010 claim promised a PR "within the next day" with no first step, and the guard caught it only after it was posted.
+- Save evidence when it is produced: the repro script had to be recreated from the draft, and the `validate-pr.sh` output wasn't saved the first time.
+- Check how fast outside PRs actually get reviewed during issue selection. The scout's activity check passed this repo on human commits, but #1995 has waited 61 days with no maintainer reply, and that is now the main risk to my PR.
 
 ---
 
 ## Resources Used
 
-[What actually helped, not a reading list. List things this story
-already shows you using: the doc you followed to set the environment
-up, the thread that explained the bug, the person who answered you.
-One real entry beats ten plausible ones.]
-
-- [Link to documentation that helped]
-- [Discussion, issue, or post that helped]
+- Owner's triage comment on #1010, which named the fix (`@computed_field` or a validator) and the current line numbers: https://github.com/Snoww3d/jwst-data-analysis/issues/1010#issuecomment-5501555925
+- The repo's CONTRIBUTING.md (Docker setup, `Closes #N`, required PR sections, `./scripts/validate-pr.sh`): https://github.com/Snoww3d/jwst-data-analysis/blob/main/CONTRIBUTING.md
+- The repo's CI workflow, for the exact pytest coverage floor and ruff commands in my manifest: https://github.com/Snoww3d/jwst-data-analysis/blob/main/.github/workflows/ci.yml
+- PR #1963, the only merged outside-contributor PR, used as the waiting-time evidence for my playbook: https://github.com/Snoww3d/jwst-data-analysis/pull/1963
+- Course starters used as installed: the Unit 8 PR monitor's `INSTALL.md` (https://github.com/codepath/ai301-unit8-starter) and my Unit 6–7 voice guard and ship-gate.
+- Claude Code, which read the repo, ran the Docker builds, tests, and checks, and helped draft the plan, PR body, and playbook. I reviewed its diffs and output, and the PR discloses that help.
